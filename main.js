@@ -39,9 +39,9 @@ function booking(e){
     }
 
     let deleteButton = document.createElement('button');  //create delete button with class
-    deleteButton.className = 'delete';
-    deleteButton.setAttribute('type' , 'button') //before setting this attribute ,  when i clicked on delete button it was working as submit form button , so if u click delete it would append the li element
-    deleteButton.setAttribute("onclick" , "deleteItem()");
+    //deleteButton.className = 'delete';
+    //deleteButton.setAttribute('type' , 'button') //before setting this attribute ,  when i clicked on delete button it was working as submit form button , so if u click delete it would append the li element
+    //deleteButton.setAttribute("onclick" , "deleteItem()");
 
     deleteButton.appendChild(document.createTextNode('Delete'));
     
@@ -50,7 +50,7 @@ function booking(e){
     newPatient.appendChild(editButton);
     newPatient.appendChild(deleteButton);
 
-    console.log(deleteButton);
+    
 
     
     
@@ -58,6 +58,23 @@ function booking(e){
     //now add functionality for edit and delete button
 
     //for delete button
+    deleteButton.addEventListener("click" , deleteItem);
+    function deleteItem(e){
+        e.preventDefault();
+        PatientList.removeChild(e.target.parentElement);
+    }
+
+    //for edit button 
+    editButton.addEventListener('click' , editItem);
+    function editItem(e){
+        e.preventDefault();
+        document.getElementById('name-text').value = patient.Name ;
+        document.getElementById('email-text').value = patient.Email ;
+        document.getElementById('contact-text').value = patient.Contact;
+        document.getElementById('date-text').value = patient.AppDate ; 
+        document.getElementById('time-text').value = patient.AppTime ; 
+        PatientList.removeChild(e.target.parentElement)
+    }
     
    
 
