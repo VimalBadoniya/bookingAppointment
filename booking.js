@@ -83,10 +83,21 @@ function submitForm(e){
     let ol = document.getElementById("ol")
     let deletebutton = document.getElementById(this.id).parentElement
     localStorage.removeItem(document.getElementById(this.id).parentElement.id)
+    
     ol.removeChild(deletebutton)
     console.log("delete clicked")
    })
 
+   axios.post("https://crudcrud.com/api/7d37a79d80f2423ca4a9bca216221f30/unicorns" , myObj)
+   .then((res)=>console.log(res))
+   .catch((err)=>console.log(err))
+
 
    document.getElementById("myform").reset()
+
+   if(location.reload){
+    axios.get("https://crudcrud.com/api/7d37a79d80f2423ca4a9bca216221f30/unicorns")
+    .then((res)=>console.log(res.data))
+    .catch((err)=>console.log(err))
+   }
 }
